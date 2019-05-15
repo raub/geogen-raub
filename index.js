@@ -287,6 +287,7 @@
 		
 		const defaultOpts = {
 			radius     : 500,
+			height     : 100 / 255,
 			thresholds : [1300, 900, 700, 400, 200],
 			resolution : 16, // int
 			heightmaps : [emptyMap, emptyMap, emptyMap, emptyMap, emptyMap, emptyMap],

@@ -1,7 +1,7 @@
 {
 	"author": "Luis Blanco <luisblanco1337@gmail.com>",
 	"name": "geogen-raub",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Planetary geometry generator",
 	"license": "MIT",
 	"main": "index.js",
