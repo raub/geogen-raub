@@ -13,7 +13,7 @@ This is a part of [Node3D](https://github.com/node-3d) project.
 
 ## Synopsis
 
-Function `geogen` is exported.
+Function `geogen()` is exported (as `module.exports` or `window.geogen`).
 This is a planetary geometry generator. It generates a dynamic LOD chunked
 sphere with vertices displaced according to the values of the `heightmap`.
 The output is in form of raw number values, so it can be used with any
@@ -22,7 +22,7 @@ graphical library.
 ![Example](example.png)
 
 
-## Function `geogen`
+## Function `geogen()`
 
 The idea is to generate a cube, and then normalize each of the vertices, resulting
 in a spheric geometry. Regarding the LODs, the approach is to subdivide any chunk
@@ -38,6 +38,7 @@ the surface, designed to hide any LODding seams. So the geometry is ready for us
 The texture coordinates are in planetary scale, [0; 1] for each side. However the
 directions are a bit tricky, and probably require some experimenting and additional
 docs. This snippet can probably help with texture generation, for now:
+
 ```
 vec2 xy = varUv * (1024.0 + 1.0) - (512.0 + 0.5);
 vec3 coords;
@@ -55,6 +56,7 @@ if (index == 0) {
 	coords = vec3(-xy.y, -xy.x, -1024.0);
 }
 ```
+
 Here `index` is the side of the initial cube, as follows: [x, -x, y, -y, z, -z].
 
 
@@ -77,7 +79,7 @@ Here `index` is the side of the initial cube, as follows: [x, -x, y, -y, z, -z].
 ```
 
 * `radius` - base size of the sphere.
-* `height` - heightmap scale.
+* `height` - heightmap scale, here `/255` means normalising from `Uint8` [0; 255] range.
 * `thresholds` - a set of LOD distances.
 * `resolution` - the number of quads in a chunk (per side).
 * `heightmaps` - 6 heightmaps for each side of the sphere.
@@ -182,12 +184,13 @@ In this example:
 * `camera` - a THREE.js camera.
 * `surface` - a THREE.Object3D representing this chunk.
 
-You dont have to nest chunk objects to enforce hierarchical invisibility.
+You don't have to nest chunk objects to enforce hierarchical invisibility.
 Nor that you could guess their nesting by the plain geometry values.
-The generator does that implicitly.
+The generator does that implicitly and takes care of it.
 
 ---
 
 A working integration of this generator can be found on the
 [Live DEMO](http://gsom.tech/geogen) website. The heightmap here is generated
-with the help of [Texgen](https://github.com/node-3d/geogen-raub).
+with the help of [Texgen](https://github.com/node-3d/texgen-raub). The source
+of the demo is not obfuscated in any way so it can also be used as a reference.
