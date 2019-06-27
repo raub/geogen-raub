@@ -75,6 +75,7 @@ Here `index` is the side of the initial cube, as follows: [x, -x, y, -y, z, -z].
 		step: number = 4,
 	}], // 6 pieces
 	onGeometry: GEOCALLBACK,
+	culling: bool = false,
 }
 ```
 
@@ -84,6 +85,7 @@ Here `index` is the side of the initial cube, as follows: [x, -x, y, -y, z, -z].
 * `resolution` - the number of quads in a chunk (per side).
 * `heightmaps` - 6 heightmaps for each side of the sphere.
 * `onGeometry` - a callback to be called for each generated chunk, as described below.
+* `culling` - whether to cull the chunks on the back of the sphere.
 
 
 ### Returns:

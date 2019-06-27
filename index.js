@@ -35,6 +35,7 @@
 			heightmap,
 			vertBox, uvBox,
 			onGeometry,
+			culling,
 		} = opts;
 		
 		let subdivs    = null;
@@ -226,7 +227,7 @@
 				const cameraPos = getCameraPos();
 				const planetPos = getPlanetPos();
 				
-				if (vertSize[0] < 1) {
+				if (culling && vertSize[0] < 1) {
 					
 					const localCenter = normalize(sub(centerPos, planetPos));
 					const localCamera = normalize(sub(cameraPos, planetPos));
@@ -283,7 +284,12 @@
 	
 	const geogen = opts => {
 		
-		const emptyMap = { resolution: 1, data: Uint8Array.from([0]), at: 0, step: 4 };
+		const emptyMap = {
+			resolution: 1,
+			data: Uint8Array.from([0]),
+			at: 0,
+			step: 4,
+		};
 		
 		const defaultOpts = {
 			radius     : 500,
@@ -291,6 +297,7 @@
 			thresholds : [1300, 900, 700, 400, 200],
 			resolution : 16, // int
 			heightmaps : [emptyMap, emptyMap, emptyMap, emptyMap, emptyMap, emptyMap],
+			culling    : false,
 		};
 		
 		const finalOpts = Object.assign({}, defaultOpts, opts);
